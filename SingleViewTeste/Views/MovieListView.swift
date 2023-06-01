@@ -8,6 +8,7 @@ struct MovieListView: View {
     var body: some View {
         VStack {
             HStack {
+                //teste
                 TextField("Search...", text: $searchQuery)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
