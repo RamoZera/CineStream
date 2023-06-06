@@ -2,33 +2,35 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView {
-            NavigationView {
-                MovieListView()
+     
+            TabView {
+                NavigationView {
+                    MovieListView()
                     
-            }
-            .tabItem{
-                NavigationLink(destination: MovieListView()){
-                    Image(systemName: "house")
+                }
+                .tabItem{
+                    NavigationLink(destination: MovieListView()){
+                        Image(systemName: "house")
+                    }
+                }
+                NavigationView {
+                    CartView()
+                }
+                .tabItem {
+                    NavigationLink(destination:  CartView()){
+                        Image(systemName: "cart")
+                    }
+                }
+                NavigationView{
+                    ProfileView()
+                }
+                .tabItem {
+                    NavigationLink(destination: ProfileView()){
+                        Image(systemName: "person.crop.circle")
+                    }
                 }
             }
-            NavigationView {
-                CartView()
-            }
-            .tabItem {
-                NavigationLink(destination:  CartView()){
-                    Image(systemName: "cart")
-                }
-            }
-            NavigationView{
-                ProfileView()
-            }
-            .tabItem {
-                NavigationLink(destination: ProfileView()){
-                    Image(systemName: "person.crop.circle")
-                }
-            }
-        }
+        
     }
 }
 

@@ -9,12 +9,13 @@ struct MovieDetailsView: View {
     
     private func buyTicket() {
         movieTitle = movie.title
-        price = "$9.99" // Replace with actual price
-        paymentMethod = "Credit Card" // Replace with actual payment method
+        price = "$9.99"
+        paymentMethod = "Credit Card"
         showingConfirmation = true
     }
     
     var body: some View {
+        ScrollView{
         VStack(alignment: .leading, spacing: 16) {
             if let url = URL(string: "https://image.tmdb.org/t/p/w500\(movie.posterPath)") {
                 AsyncImage(url: url) { image in
@@ -47,71 +48,60 @@ struct MovieDetailsView: View {
             }
             .padding()
             .sheet(isPresented: $showingConfirmation) {
-                ConfirmationView(
-                    movieTitle: movieTitle,
-                    price: price,
-                    paymentMethod: paymentMethod,
-                    isPresented: $showingConfirmation
-                )
+                ConfirmationView(movie: movie, isPresented: $showingConfirmation)
             }
             .frame(maxWidth: 130, minHeight: 40)
-                            .background(.blue)
-                            .tint(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                            .padding()
-                            .position(x:180, y:35)
+            .background(.blue)
+            .tint(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding()
+            .position(x:180, y:35)
         }
         .padding()
         .navigationBarTitle(movie.title)
     }
+    }
     
     struct ConfirmationView: View {
-        let movieTitle: String
-        let price: String
-        let paymentMethod: String
+        let movie: Movie
         @Binding var isPresented: Bool
         
         var body: some View {
-            VStack {
-                Text("Confirm Purchase")
-                    .font(.title)
-                    .padding()
-                
-                Text("Movie: \(movieTitle)")
-                    .font(.headline)
-                    .padding(.bottom)
-                
-                Text("Price: \(price)")
-                    .font(.subheadline)
-                    .padding(.bottom)
-                
-                Text("Payment Method: \(paymentMethod)")
-                    .font(.subheadline)
-                
-                Spacer()
-                
-                Button("Confirm") {
-                    // Perform the purchase action here
-                    
-                    // Dismiss the confirmation popup
-                    isPresented = false
-                }
-                .font(.headline)
-                .foregroundColor(.white)
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(10)
-                .padding(.bottom)
-                
-                Button("Cancel") {
-                    // Dismiss the confirmation popup
-                    isPresented = false
-                }
-                .font(.headline)
-                .foregroundColor(.blue)
-            }
-            .padding()
-        }
+               VStack(spacing: 16) {
+                   Text("Confirm Purchase")
+                       .font(.title)
+                       .padding()
+                   
+                   VStack(alignment: .leading, spacing: 8) {
+                       Text("Movie: \(movie.title)")
+                           .font(.headline)
+                       
+                       Text("Price: $10")
+                           .font(.subheadline)
+                       
+                       Text("Payment Method: Credit Card")
+                           .font(.subheadline)
+                   }
+                   .padding(.horizontal)
+                   
+                   Spacer()
+                   
+                   Button("Confirm") {
+                       isPresented = false
+                   }
+                   .font(.headline)
+                   .foregroundColor(.white)
+                   .padding()
+                   .background(Color.blue)
+                   .cornerRadius(10)
+                   
+                   Button("Cancel") {
+                       isPresented = false
+                   }
+                   .font(.headline)
+                   .foregroundColor(.blue)
+               } 
+           }
     }
     
 }
