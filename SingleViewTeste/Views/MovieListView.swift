@@ -34,8 +34,8 @@ struct MovieListView: View {
             fetchData()
         }
         .onChange(of: searchQuery) { _ in
-                   filterMovies()
-               }
+            filterMovies()
+        }
     }
     
     private func fetchData() {
