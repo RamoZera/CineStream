@@ -1,7 +1,7 @@
 import Foundation
 
 class MoviesListViewModel {
-    @Published var movies: [Movie] = []
+    var movies: [Movie] = []
     
     static func fetchMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=d2ea758c1787f6f8715df6713125a180") else {

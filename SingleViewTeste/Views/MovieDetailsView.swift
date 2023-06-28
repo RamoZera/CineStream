@@ -75,8 +75,7 @@ struct MovieDetailsView: View {
                 isPresented: $showingConfirmation,
                 session: $session,
                 selectedPaymentMethod: $selectedPaymentMethod,
-                quantity: $quantity,
-                totalPrice: $totalPrice
+                quantity: $quantity
             )
             .frame(width: 380, height: 800)
             .background(Color.white)

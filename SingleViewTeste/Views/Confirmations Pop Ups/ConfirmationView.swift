@@ -27,7 +27,10 @@ struct ConfirmationView: View {
     @Binding var session: Date
     @Binding var selectedPaymentMethod: String
     @Binding var quantity: Int
-    @Binding var totalPrice: Double
+    var totalPrice: Double{
+        let unitPrice = 9.99
+        return Double(quantity) * unitPrice
+    }
     
     private let paymentMethods = ["Credit Card", "PayPal", "Apple Pay", "MB Way"]
     
@@ -60,14 +63,14 @@ struct ConfirmationView: View {
                 .padding(.leading, -15.0)
                 .font(.subheadline)
                 
-                Text("Preço: 10€")
+                Text("Preço: 9.99€")
                     .font(.headline)
                 
                 HStack {
                     Stepper("Quantidade: \(quantity)", value: $quantity, in: 1...9)
                         .padding(.horizontal)
                     
-                    Text("Preço: $\(totalPrice, specifier: "%.2f")")
+                    Text("Preço: \(totalPrice, specifier: "%.2f")€")
                         .font(.subheadline)
                 }
                 .padding(.leading, -15.0)
