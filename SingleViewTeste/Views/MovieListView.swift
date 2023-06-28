@@ -39,7 +39,7 @@ struct MovieListView: View {
     }
     
     private func fetchData() {
-        MoviesManager.fetchMovies { result in
+        MoviesListViewModel.fetchMovies { result in
             switch result {
             case .success(let movies):
                 self.movies = movies

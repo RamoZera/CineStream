@@ -10,7 +10,7 @@ struct MovieDetailsView: View {
     @State private var quantity = 1
     @State private var totalPrice = 10.0
     
-    func buyTicket() {
+    private func buyTicket() {
         let confirmationData = ConfirmationDataModel.ConfirmationData(
             movieTitle: movie.title,
             session: session,
@@ -22,7 +22,7 @@ struct MovieDetailsView: View {
         print(confirmationData)
     }
     
-    func showPopUp() {
+   private func showPopUp() {
         showingConfirmation = true
     }
     

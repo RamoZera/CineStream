@@ -21,14 +21,6 @@ struct ContentView: View {
                     Image(systemName: "ticket")
                 }
             }
-            NavigationView{
-                ProfileView()
-            }
-            .tabItem {
-                NavigationLink(destination: ProfileView()){
-                    Image(systemName: "person.crop.circle")
-                }
-            }
         }
         
     }
